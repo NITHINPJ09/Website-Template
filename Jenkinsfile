@@ -7,7 +7,6 @@ pipeline {
                     sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T $USERNAME@40.114.114.65 <<EOF
                     if [ -d "/home/azureuser/Website-Template" ]
                     then 
-                        echo hello
                         cd /home/azureuser/Website-Template
                         git pull origin master
                         sudo cp -r * /var/www/html/
