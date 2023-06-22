@@ -7,7 +7,7 @@ pipeline {
                     sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T $USERNAME@40.114.114.65 <<EOF
                     DIR="/home/azureuser/sample"
                     pwd
-                    cd "$DIR"
+                    cd /home/azureuser/sample
                     pwd
                     exit
                     EOF'''
