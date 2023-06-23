@@ -4,7 +4,7 @@ pipeline {
         stage('---Deployment---') { 
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'Server-Credentials', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
-                    sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T $20.232.159.120 <<EOF
+                    sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T 20.232.159.120 <<EOF
                     link="/home/user"
                     echo "test"
                     echo "\$link"
