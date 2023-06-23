@@ -5,14 +5,15 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'Server-Credentials', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
                     sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T $USERNAME@40.114.114.65 <<EOF
-                    if [ -d "/home/azureuser/Website-Template" ]
+                    DIR="/home/azureuser/Website-Template"
+                    if [ -d "\$DIR" ]
                     then 
-                        cd /home/azureuser/Website-Template
+                        cd "\$DIR"
                         git pull origin master
                         sudo cp -r * /var/www/html/
                     else 
                         git clone https://github.com/NITHINPJ09/Website-Template.git
-                        cd /home/azureuser/Website-Template
+                        cd "\$DIR"
                         sudo cp -r * /var/www/html/
                     fi
                     exit
