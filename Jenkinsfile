@@ -8,6 +8,7 @@ pipeline {
                     DIR="/home/azureuser/Website-Template"
                     echo "$DIR"
                     echo "\$DIR"
+                    echo "test"
                     if [ -d "\$DIR" ]
                     then 
                         cd "\$DIR"
