@@ -3,12 +3,13 @@ pipeline {
     stages {
         stage('---Code Analysis---') { 
             environment {
-                ORGANIZATION = "test-project-for-devops"
-                PROJECT_NAME = "Website"
+                SCANNER_HOME = tool 'scannerHome'
+                ORGANIZATION = 'test-project-for-devops'
+                PROJECT_NAME = 'Website'
             }
             steps {
                 withSonarQubeEnv('SQ1') {
-                    sh '''${tool("scannerHome")}/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
                       -Dsonar.projectKey=$PROJECT_NAME \
                       -Dsonar.projectVersion=1.0 \
                       -Dsonar.projectBaseDir=.'''
