@@ -12,7 +12,7 @@ pipeline {
                     sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
                       -Dsonar.projectKey=$PROJECT_NAME \
                       -Dsonar.projectVersion=1.0 \
-                      -Dsonar.projectBaseDir=./css'''
+                      -Dsonar.projectBaseDir=.'''
                 }
             }
         }
