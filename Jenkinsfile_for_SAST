@@ -5,7 +5,7 @@ pipeline {
             environment {
                 SCANNER_HOME = tool 'scannerHome'
                 ORGANIZATION = 'test-project-for-devops'
-                PROJECT_NAME = 'DEMO_PROJECT'
+                PROJECT_NAME = 'Website'
             }
             steps {
                 withSonarQubeEnv('SQ1') {
