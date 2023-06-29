@@ -5,12 +5,14 @@ pipeline {
             environment {
                 SCANNER_HOME = tool 'scannerHome'
                 ORGANIZATION = 'test-project-for-devops'
-                PROJECT_NAME = 'Presonal-Website-009'
+                PROJECT_NAME = 'Personal-Website'
+                PROJECT_KEY = 'Personal-Website-009'
             }
             steps {
                 withSonarQubeEnv('SQ1') {
                     sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.organization=$ORGANIZATION \
-                      -Dsonar.projectKey=$PROJECT_NAME \
+                      -Dsonar.projectName=$PROJECT_NAME \
+                      -Dsonar.projectKey=$PROJECT_KEY \
                       -Dsonar.projectBaseDir=.'''
                 }
             }
