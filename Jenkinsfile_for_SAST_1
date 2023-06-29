@@ -11,7 +11,7 @@ pipeline {
                 PROJECT_KEY = 'Personal-Website-009'
             }
             steps {
-                withSonarQubeEnv('SQ1') {
+                withSonarQubeEnv('MySonarQube') {
                     sh '''$SCANNER_HOME/bin/sonar-scanner \
                       -Dsonar.projectName=$PROJECT_NAME \
                       -Dsonar.projectKey=$PROJECT_KEY \
