@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('---Code Analysis---') { 
+        stage('---SonarQube Analysis---') { 
             environment {
                 SCANNER_HOME = tool 'scannerHome'
                 ORGANIZATION = 'test-project-for-devops'
@@ -17,10 +17,12 @@ pipeline {
                 }
             }
         }
-    }
-    post {
-        always {
-            deleteDir()
+        stage('---Quality Gate---') {
+            steps {
+                timeout(time: 2, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
         }
     }
 }
