@@ -27,7 +27,7 @@ pipeline {
         stage('---Deployment---') { 
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'Server-Credentials', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
-                    sh 'scp -i $KEY -o StrictHostKeyChecking=accept-new -r * $USERNAME@20.127.31.172:/var/www/html'
+                    sh 'scp -i $KEY -o StrictHostKeyChecking=accept-new -r * $USERNAME@52.136.117.106:/var/www/html'
                 }
             }
         }  
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'DAST_Server', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
                     sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T $USERNAME@172.171.198.19 <<EOF
-                    sudo docker run -t owasp/zap2docker-stable zap-baseline.py -t http://20.127.31.172/ || true
+                    sudo docker run -t owasp/zap2docker-stable zap-baseline.py -t http://52.136.117.106/ || true
                     exit
                     EOF'''
                 }
