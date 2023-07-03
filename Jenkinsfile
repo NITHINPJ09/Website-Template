@@ -4,7 +4,7 @@ pipeline {
         stage('---Deployment---') { 
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'Server-Credentials', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
-                    sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T $USERNAME@20.232.159.120 <<EOF
+                    sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T $USERNAME@52.136.117.106 <<EOF
                     if [ -d "/home/azureuser/Website-Template" ]
                     then 
                         cd /home/azureuser/Website-Template
