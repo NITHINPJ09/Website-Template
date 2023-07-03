@@ -27,7 +27,7 @@ pipeline {
         stage('---Deployment---') { 
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'Server-Credentials', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
-                    sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T azureuser@20.232.159.120 <<EOF
+                    sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T $USERNAME@20.127.31.172 <<EOF
                     if [ -d "/home/azureuser/Website-Template" ]
                     then 
                         cd /home/azureuser/Website-Template
@@ -42,6 +42,17 @@ pipeline {
                     EOF'''
                 }
             }
-        }      
+        }  
+        stage('---DAST---') { 
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'DAST_Server', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
+                    sh '''ssh -i $KEY -o StrictHostKeyChecking=accept-new -T $USERNAME@172.171.198.19 <<EOF
+                    sudo docker run -t owasp/zap2docker-stable zap-baseline.py -t http://20.127.31.172/
+                    exit
+                    EOF'''
+                }
+            }
+        } 
+
     }
 }
